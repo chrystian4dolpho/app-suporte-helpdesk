@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>App Help Desk</title>
+    <title>Suporte Help Desk</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -32,13 +32,32 @@
               Login
             </div>
             <div class="card-body">
-              <form>
+              <form action="./valida_login.php" method="POST">
                 <div class="form-group">
-                  <input type="email" class="form-control" placeholder="E-mail">
+                  <input name="email" type="email" class="form-control" placeholder="E-mail">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Senha">
+                  <input name="senha" type="password" class="form-control" placeholder="Senha">
                 </div>
+
+                <?
+                  if(isset($_GET["login"]) && $_GET["login"] == "erro"){ //confere a existencia de um parametro login passado pela url(GET)
+                ?>
+                  <!-- separando código html do php -->
+
+                    <div class="text-danger">Usuário ou senha inválido(s)!</div>
+
+                <?}?>
+
+                <?
+                  if(isset($_GET["login"]) && $_GET["login"] == "proibido"){ //confere a existencia de um parametro login passado pela url(GET)
+                ?>
+                  <!-- separando código html do php -->
+
+                    <div class="text-danger">Você deve estar autenticado para acessar o sistema!</div>
+
+                <?}?>
+
                 <button class="btn btn-lg btn-info btn-block" type="submit">Entrar</button>
               </form>
             </div>

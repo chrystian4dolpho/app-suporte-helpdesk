@@ -12,6 +12,7 @@
     );
 
     //script responsável pela autenticação de usuário
+    session_start();
     $usuarioAutenticado = false;
 
     foreach($app_users as $user){
@@ -21,10 +22,12 @@
     };
 
     if($usuarioAutenticado){
-        echo "Usuário autenticado";
+        $_SESSION["autenticacao"] = true;
+        echo "autenticado com sucesso!";
     }else{
         //redirecionando ao index
-        header("Location: ./index.php?loguin=");
+        $_SESSION["autenticacao"] = false;
+        header("Location: ./index.php?login=erro");
     };
 
 ?>
