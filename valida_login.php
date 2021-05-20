@@ -23,7 +23,7 @@
 
     if($usuarioAutenticado){
         $_SESSION["autenticacao"] = true;
-        echo "autenticado com sucesso!";
+        header("Location: ./home.php");
     }else{
         //redirecionando ao index
         $_SESSION["autenticacao"] = false;
