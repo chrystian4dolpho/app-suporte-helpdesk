@@ -1,7 +1,20 @@
 <?php
   //check de autenticação
   require_once("./valida_session.php");
+
+  //recuperando dados
+  $arquivo = fopen('chamado.txt', 'r');
+
+  $chamados = array();
+
+  while(!feof($arquivo)){
+    $registro = fgets($arquivo);
+    $chamados[] = $registro; 
+  }
+
+  fclose($arquivo);
 ?>
+
 <html>
   <head>
     <meta charset="utf-8" />
@@ -40,24 +53,29 @@
             </div>
             
             <div class="card-body">
-              
-              <div class="card mb-3 bg-light">
-                <div class="card-body">
-                  <h5 class="card-title">Título do chamado...</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                  <p class="card-text">Descrição do chamado...</p>
+              <!-- Cards dinamicos de chamado -->
+              <?php
+                
+                foreach($chamados as $chamado){
+                  $dadosChamado = explode('#', $chamado);
 
-                </div>
-              </div>
+                  if(count($dadosChamado) < 3){//verifica se o array chamado tem os campos preenchidos
+                    continue;
+                  }
 
-              <div class="card mb-3 bg-light">
-                <div class="card-body">
-                  <h5 class="card-title">Título do chamado...</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                  <p class="card-text">Descrição do chamado...</p>
 
-                </div>
-              </div>
+              ?>
+
+                  <div class="card mb-3 bg-light">
+                    <div class="card-body">
+                      <h5 class="card-title"><?=$dadosChamado[0]?></h5>
+                      <h6 class="card-subtitle mb-2 text-muted"><?=$dadosChamado[1]?></h6>
+                      <p class="card-text"><?=$dadosChamado[2]?></p>
+                    </div>
+                  </div>
+
+              <? } ?>
+              <!-- FIM DO LAÇO DINAMINCO -->
 
               <div class="row mt-5">
                 <div class="col-6">
