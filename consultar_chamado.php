@@ -59,18 +59,23 @@
                 foreach($chamados as $chamado){
                   $dadosChamado = explode('#', $chamado);
 
-                  if(count($dadosChamado) < 3){//verifica se o array chamado tem os campos preenchidos
+                  if(count($dadosChamado) < 4){//verifica se o array chamado tem os campos preenchidos
                     continue;
                   }
 
+                  if($_SESSION["perfil_id"] == 'user'){//filtro de dados que serão mostrados na tela
+                    if($_SESSION["id"] != $dadosChamado[0]){
+                      continue;
+                    }
+                  }
 
               ?>
 
                   <div class="card mb-3 bg-light">
                     <div class="card-body">
-                      <h5 class="card-title"><?=$dadosChamado[0]?></h5>
-                      <h6 class="card-subtitle mb-2 text-muted"><?=$dadosChamado[1]?></h6>
-                      <p class="card-text"><?=$dadosChamado[2]?></p>
+                      <h5 class="card-title"><?=$dadosChamado[1]?></h5>
+                      <h6 class="card-subtitle mb-2 text-muted"><?=$dadosChamado[2]?></h6>
+                      <p class="card-text"><?=$dadosChamado[3]?></p>
                     </div>
                   </div>
 
