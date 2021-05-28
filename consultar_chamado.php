@@ -3,16 +3,7 @@
   require_once("./valida_session.php");
 
   //recuperando dados
-  $arquivo = fopen('chamado.txt', 'r');
-
-  $chamados = array();
-
-  while(!feof($arquivo)){
-    $registro = fgets($arquivo);
-    $chamados[] = $registro; 
-  }
-
-  fclose($arquivo);
+  require_once("./filtra_chamado.php");
 ?>
 
 <html>
@@ -53,29 +44,15 @@
             </div>
             
             <div class="card-body">
+
               <!-- Cards dinamicos de chamado -->
-              <?php
-                
-                foreach($chamados as $chamado){
-                  $dadosChamado = explode('#', $chamado);
-
-                  if(count($dadosChamado) < 4){//verifica se o array chamado tem os campos preenchidos
-                    continue;
-                  }
-
-                  if($_SESSION["perfil_id"] == 'user'){//filtro de dados que serão mostrados na tela
-                    if($_SESSION["id"] != $dadosChamado[0]){
-                      continue;
-                    }
-                  }
-
-              ?>
+              <? foreach($dadosChamados as $chamado){ ?>
 
                   <div class="card mb-3 bg-light">
                     <div class="card-body">
-                      <h5 class="card-title"><?=$dadosChamado[1]?></h5>
-                      <h6 class="card-subtitle mb-2 text-muted"><?=$dadosChamado[2]?></h6>
-                      <p class="card-text"><?=$dadosChamado[3]?></p>
+                      <h5 class="card-title"><?=$chamado[1]?></h5>
+                      <h6 class="card-subtitle mb-2 text-muted"><?=$chamado[2]?></h6>
+                      <p class="card-text"><?=$chamado[3]?></p>
                     </div>
                   </div>
 
