@@ -18,7 +18,7 @@
 
     <nav class="navbar navbar-dark bg-dark">
       <a class="navbar-brand" href="#">
-        <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="./public/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Suporte Help Desk
       </a>
     </nav>
@@ -32,7 +32,7 @@
               Login
             </div>
             <div class="card-body">
-              <form action="./valida_login.php" method="POST">
+              <form action="./public/valida_login.php" method="POST">
                 <div class="form-group">
                   <input name="email" type="email" class="form-control" placeholder="E-mail">
                 </div>

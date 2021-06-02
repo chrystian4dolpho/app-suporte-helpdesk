@@ -1,5 +1,5 @@
 <?php
-    $arquivo = fopen('chamado.txt', 'r');
+    $arquivo = fopen('../app/chamado.txt', 'r');
 
     $dadosChamados = array();
 
